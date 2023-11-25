@@ -1,0 +1,93 @@
+{% extends 'core/base.html' %}
+
+
+{% block content %}                   
+
+
+    <section class="bg-white dark:bg-gray-900">
+        <div class="flex justify-center min-h-screen">
+            <div class="hidden bg-cover lg:block lg:w-2/5" style="background-image: url('https://images.unsplash.com/photo-1494621930069-4fd4b2e24a11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80')">
+            </div>
+
+            <div class="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
+                <div class="w-full">
+                    <h1 class="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
+                        Get your free account now.
+                    </h1>
+
+                    <p class="mt-4 text-gray-500 dark:text-gray-400">
+                        Let’s get you all set up so you can verify your personal account and begin setting up your profile.
+                    </p>
+
+
+                    <form class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2" action="{% url 'signup' %}" method="post">
+                        {% csrf_token %}
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div class="p-2 bg-red-500 text-white rounded-xl m-2">
+                                        <p class="p-2">{{ error|escape }}</p>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <div class="p-6 bg-red-500 text-white rounded-xl m-2">
+                                    <p class="p-2">{{ error|escape }}</p>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                       
+                        
+                        <div>
+                            <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Username</label>
+                            <input type="text" name="username" placeholder="Username" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />     
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">First Name</label>
+                            <input type="text" name="first_name" placeholder="Joe" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />     
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Last Name</label>
+                            <input type="text" name="last_name" placeholder="Biden" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />     
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email</label>
+                            <input type="email" name="email" placeholder="example@gmail.com" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />     
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200" for="password">Password</label>
+                            <input type="password" name="password1" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />     
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200" for="password">Retype Password</label>
+                            <input type="password" name="password2" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />     
+                        </div>
+                    
+                        
+
+                        <button
+                            class="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                            <span>Sign Up </span>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div class="border-t pt-3">
+                            <p class="text-sm text-gray-500">
+                                Already have an account?
+                                <a class="ml-2 text-blue-500" href="{% url 'login' %}">Login Now</a>
+                            </p>
+                            <p class="text-sm text-gray-500">
+                                <a class="text-blue-500" href="/">Forgot password?</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

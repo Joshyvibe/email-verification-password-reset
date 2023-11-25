@@ -1,0 +1,82 @@
+{% extends 'core/base.html' %}
+
+
+{% block content %}
+
+    
+    
+
+
+
+    <section class="bg-white dark:bg-gray-900">
+        <div class="container px-6 py-24 mx-auto lg:py-32">
+            <div class="lg:flex">
+                <div class="lg:w-1/2">
+                    <?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" width="50" height="50"><defs><style>.cls-1{fill:#d8e1ef;}.cls-2{fill:#0593ff;}</style></defs><title/><g id="In"><rect class="cls-1" height="26" rx="4" ry="4" width="20" x="10" y="3"/><path class="cls-2" d="M22.71,15.29l-4-4a1,1,0,0,0-1.42,1.42L19.59,15H3a1,1,0,0,0,0,2H19.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4A1,1,0,0,0,22.71,15.29Z"/></g></svg>
+
+                    <h1 class="mt-4 text-gray-600 dark:text-gray-300 md:text-lg">Welcome back</h1>
+                    
+                    <h1 class="mt-4 text-2xl font-medium text-gray-800 capitalize lg:text-3xl dark:text-white">
+                        login to your account
+                    </h1>
+                </div>
+
+                <div class="mt-8 lg:w-1/2 lg:mt-0">
+                    <form class="w-full lg:max-w-xl" method="post"  action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <div class="relative flex items-center">
+                            <span class="absolute">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </span>
+
+                            <input type="text" name="username" class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address or Username">
+                        </div>
+
+                        <div class="relative flex items-center mt-4">
+                            <span class="absolute">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                            </span>
+
+                            <input type="password" name="password" class="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password">
+                        </div>
+
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div class="p-6 bg-red-500 text-white rounded-xl m-2">
+                                        <p class="p-2">{{ error|escape }}</p>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <div class="p-6 bg-red-500 text-white rounded-xl m-2">
+                                    <p class="p-2">{{ error|escape }}</p>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <div class="mt-8 md:flex md:items-center">
+                            <button class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg md:w-1/2 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                                Sign in
+                            </button>
+
+                            <a href="{% url 'password_reset' %}" class="inline-block mt-4 text-center text-blue-500 md:mt-0 md:mx-6 hover:underline dark:text-blue-400">
+                                Forgot your password?
+                            </a>
+                            <p class="text-sm text-gray-500">
+                                Need an account?
+                                <a class="ml-2 text-blue-500" href="{% url 'signup' %}">Sign Up Now</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}

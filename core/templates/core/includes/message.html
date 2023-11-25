@@ -1,0 +1,7 @@
+{% if messages %}
+    {% for message in messages %}
+        <div class="global-container p-2 text-red-500 rounded-xl m-2 mt-6 bg-gray-300">
+           <p class="ml-2">{{ message }}</p> 
+        </div>
+    {% endfor %}
+{% endif %}
